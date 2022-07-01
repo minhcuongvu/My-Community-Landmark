@@ -38,7 +38,13 @@ export default class FetchData extends Component {
   }
 
   async populateWeatherData() {
-    const response = await fetch('weatherforecast');
+    let response;
+    const rndInt = Math.floor(Math.random() * 6) + 1;
+    if (rndInt % 2 === 0) {
+      response = await fetch('https://mapnoteapp.azurewebsites.net/weatherforecast');
+    } else {
+      response = await fetch('weatherforecast');
+    }
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });
   }

@@ -12,3 +12,19 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.Map {
+  border-radius: 1rem;
+}
+
+.MapMenu {
+  display: flex;
+  height: 100vh;
+}
+
+.Menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
