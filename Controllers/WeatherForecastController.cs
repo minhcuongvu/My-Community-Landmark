@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Project1.Controllers
+namespace MyCommunityLandMark.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -8,7 +8,7 @@ namespace Project1.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        "Bingo", "Bengo", "Bango", "Bongo", "Dog", "Cat", "Fish", "Birb", "Duck", "Chicken"
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
