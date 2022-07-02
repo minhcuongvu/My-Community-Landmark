@@ -38,38 +38,30 @@ export default function Counter() {
   }, [initialPosition]);
 
   return (
-    <div>
-      <div>
-        <h1>Counter</h1>
-        <p>This is a simple example of a React component.</p>
-        <p aria-live="polite">
-          Current count: <strong>{currentCount}</strong>
-        </p>
-      </div>
-
-      <br />
-
+    <section className="py-4 bg__color">
       <div className="MapMenu">
-        <MapContainer
-          className="Map"
-          center={[51.505, -0.09]}
-          style={{ height: '80vh', width: '65%' }}
-          zoom={13}
-          scrollWheelZoom
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={initialPosition}>
-            <Popup closeButton={false}>You are here!</Popup>
-          </Marker>
-          <CenterView center={initialPosition} />
-        </MapContainer>
+        <div className="Map">
+          <MapContainer
+            className="leaflet__map"
+            center={[51.505, -0.09]}
+            style={{ height: '100%', width: '100%' }}
+            zoom={13}
+            scrollWheelZoom
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={initialPosition}>
+              <Popup closeButton={false}>You are here!</Popup>
+            </Marker>
+            <CenterView center={initialPosition} />
+          </MapContainer>
+        </div>
         <div className="Menu">
           <div className="MenuLabel">
             <span className="MenuLabel__title">My Community Landmark</span>
-            <span className="MenuLabel__desc">
+            <span className="text__desc">
               View community notes around you and add your own!
             </span>
           </div>
@@ -84,6 +76,6 @@ export default function Counter() {
           <div className="Display">{currentCount}</div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
