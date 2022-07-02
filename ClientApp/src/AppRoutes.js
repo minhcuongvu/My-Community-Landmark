@@ -1,15 +1,15 @@
-import Counter from './components/Counter';
+import LandmarkApp from './components/LandmarkApp';
 import FetchData from './components/FetchData';
 import Home from './components/Home';
 
 const AppRoutes = [
   {
     index: true,
-    element: <Counter />,
+    element: <LandmarkApp />,
   },
   {
-    path: '/counter',
-    element: <Counter />,
+    path: '/LandmarkApp',
+    element: <LandmarkApp />,
   },
   {
     path: '/fetch-data',

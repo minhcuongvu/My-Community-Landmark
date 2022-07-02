@@ -11,8 +11,8 @@ export default function Layout({ children }) {
       <NavMenu />
       <Banner />
       <Container>{children}</Container>
-      <Testimonials />
       <Banner />
+      <Testimonials />
       <Footer />
     </div>
   );

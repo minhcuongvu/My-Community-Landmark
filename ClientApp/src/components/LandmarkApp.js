@@ -13,29 +13,36 @@ import 'leaflet-defaulticon-compatibility';
 
 function CenterView({ center }) {
   const map = useMap();
-  map.setView(center, 12);
+  map.setView(center, map.getZoom());
   return null;
 }
 
-export default function Counter() {
-  const [currentCount, setCurrentCount] = useState(0);
+export default function LandmarkApp() {
+  const [username, setUsername] = useState('');
+  const [note, setNote] = useState('');
   const [initialPosition, setInitialPosition] = useState([51.505, -0.09]);
-
-  const ChangePosition = () => {
-    setInitialPosition([initialPosition[0] + 1, initialPosition[1] + 1]);
-  };
-
   const GetCurrentPosition = () => {
-    console.log('inside useEffect');
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
       setInitialPosition([latitude, longitude]);
     });
   };
 
-  useEffect(() => {
-    console.log(initialPosition);
-  }, [initialPosition]);
+  const SubmitNote = () => {
+    if (!username || !note) {
+      alert('Please enter a username and note');
+      return;
+    }
+    console.log(username);
+    console.log(note);
+  };
+
+  const Refresh = () => {
+    setUsername('');
+    setNote('');
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <section className="py-4 bg__color">
@@ -69,8 +76,11 @@ export default function Counter() {
             <button className="btn btn-primary" onClick={GetCurrentPosition}>
               Your location
             </button>
-            <button className="btn btn-primary" onClick={ChangePosition}>
+            <button className="btn btn-primary" onClick={SubmitNote}>
               Submit a note
+            </button>
+            <button className="btn btn-primary" onClick={Refresh}>
+              Refresh map
             </button>
           </div>
           <div className="Control">
@@ -88,6 +98,8 @@ export default function Counter() {
                   name="username"
                   placeholder="Your name.."
                   style={{ width: '100%' }}
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={username}
                 />
                 <input
                   type="text"
@@ -95,6 +107,8 @@ export default function Counter() {
                   name="note"
                   placeholder="Your note.."
                   style={{ width: '100%' }}
+                  onChange={(e) => setNote(e.target.value)}
+                  value={note}
                 />
               </label>
             </form>
