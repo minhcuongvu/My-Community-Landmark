@@ -12,6 +12,7 @@ export default function Layout({ children }) {
       <Banner />
       <Container>{children}</Container>
       <Testimonials />
+      <Banner />
       <Footer />
     </div>
   );

@@ -10,6 +10,7 @@ import {
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
 import 'leaflet-defaulticon-compatibility';
+import WindowDims from './useWindowDimensions';
 
 function CenterView({ center }) {
   const map = useMap();
@@ -76,18 +77,66 @@ export default function Counter() {
           <div className="Control">
             <form className="form" action="/">
               <label className="form__input" htmlFor="fname">
-                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                <span
+                  className="text__desc"
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
                   Write a note at your location!
                 </span>
                 <input
                   type="text"
+                  id="name"
+                  name="username"
+                  placeholder="Your name.."
+                  style={{ width: '100%' }}
+                />
+                <input
+                  type="text"
                   id="note"
-                  name="usernote"
+                  name="note"
                   placeholder="Your note.."
                   style={{ width: '100%' }}
                 />
               </label>
             </form>
+            <div className="NoteList__wrapper">
+              <p className="lorum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque euismod, nisi vel consectetur consectetur, nisi
+                velit euismod nisi, vel consectetur nisi nisi velit euismod
+                nisi.
+              </p>
+              <p className="lorum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque euismod, nisi vel consectetur consectetur, nisi
+                velit euismod nisi, vel consectetur nisi nisi velit euismod
+                nisi.
+              </p>
+              <p className="lorum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque euismod, nisi vel consectetur consectetur, nisi
+                velit euismod nisi, vel consectetur nisi nisi velit euismod
+                nisi.
+              </p>
+              <p className="lorum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque euismod, nisi vel consectetur consectetur, nisi
+                velit euismod nisi, vel consectetur nisi nisi velit euismod
+                nisi.
+              </p>
+              <p className="lorum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque euismod, nisi vel consectetur consectetur, nisi
+                velit euismod nisi, vel consectetur nisi nisi velit euismod
+                nisi.
+              </p>
+              <p className="lorum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque euismod, nisi vel consectetur consectetur, nisi
+                velit euismod nisi, vel consectetur nisi nisi velit euismod
+                nisi.
+              </p>
+            </div>
           </div>
         </div>
       </div>

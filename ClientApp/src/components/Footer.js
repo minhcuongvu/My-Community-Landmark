@@ -17,8 +17,22 @@ export default function Footer() {
         <div className="footer__bot">
           <div className="footer__bottom__items">
             <div className="footer__bottom__item">
-              <div>Logo</div>
-              <div>Image</div>
+              <a href="/">
+                <img
+                  alt="logo"
+                  height={54}
+                  width={240}
+                  src="/directory-logo.svg"
+                />
+              </a>
+              <a href="/">
+                <img
+                  alt="cie-logo"
+                  height={54}
+                  width={108}
+                  src="/cie-logo.svg"
+                />
+              </a>
             </div>
             <div className="footer__bottom__item">
               <div className="footer__bottom__item-a footer__text">
@@ -30,8 +44,36 @@ export default function Footer() {
             </div>
             <div className="footer__bottom__item">
               <ul>
-                <li className="footer__bottom__list__item">Media 1</li>
-                <li className="footer__bottom__list__item">Media 2</li>
+                <li className="footer__bottom__list__item">
+                  <a href="/">
+                    <img
+                      alt="linkedin"
+                      height={35}
+                      width={35}
+                      src="/linkedin-svgrepo-com.svg"
+                    />
+                  </a>
+                </li>
+                <li className="footer__bottom__list__item">
+                  <a href="/">
+                    <img
+                      alt="twitter"
+                      height={35}
+                      width={35}
+                      src="/twitter-svgrepo-com.svg"
+                    />
+                  </a>
+                </li>
+                <li className="footer__bottom__list__item">
+                  <a href="/">
+                    <img
+                      alt="facebook"
+                      height={35}
+                      width={35}
+                      src="/facebook-svgrepo-com.svg"
+                    />
+                  </a>
+                </li>
               </ul>
               <button>Subscribe</button>
             </div>
@@ -44,13 +86,6 @@ export default function Footer() {
             and wellbeing of the com munity by the cultural heritage, values and
             beliefs of Aboriginal communities today.
           </div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{' '}
-          </a>
         </div>
       </div>
     </footer>
