@@ -17,8 +17,12 @@ export default function Banner() {
                 </h4>
               </div>
               <div className="Title__box__subtitle text__title__color">
-                Discover your local
-                <span>Community Landmark</span>
+                <h4 className="Title__box__title text__title text__title__color">
+                  Discover your local
+                </h4>
+                <span className="Title__box__title text__title">
+                  Community Landmark
+                </span>
               </div>
             </div>
           </div>

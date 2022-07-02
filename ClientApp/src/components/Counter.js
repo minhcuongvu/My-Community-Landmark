@@ -67,13 +67,28 @@ export default function Counter() {
           </div>
           <div className="Panel">
             <button className="btn btn-primary" onClick={GetCurrentPosition}>
-              Get
+              Your location
             </button>
             <button className="btn btn-primary" onClick={ChangePosition}>
-              Change
+              Submit a note
             </button>
           </div>
-          <div className="Display">{currentCount}</div>
+          <div className="Control">
+            <form className="form" action="/">
+              <label className="form__input" htmlFor="fname">
+                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  Write a note at your location!
+                </span>
+                <input
+                  type="text"
+                  id="note"
+                  name="usernote"
+                  placeholder="Your note.."
+                  style={{ width: '100%' }}
+                />
+              </label>
+            </form>
+          </div>
         </div>
       </div>
     </section>

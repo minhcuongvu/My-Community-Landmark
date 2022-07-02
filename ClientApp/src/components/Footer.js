@@ -12,7 +12,6 @@ export default function Footer() {
             <FooterItem />
             <FooterItem />
             <FooterItem />
-            <FooterItem />
           </div>
         </div>
         <div className="footer__bot">
@@ -26,7 +25,7 @@ export default function Footer() {
                 © Copyright 2022 My Community Diary
               </div>
               <div className="footer__bottom__item-a footer__text">
-                Text App to 0488 884 151
+                Text App - 0488 884 151
               </div>
             </div>
             <div className="footer__bottom__item">

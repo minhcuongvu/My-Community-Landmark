@@ -152,8 +152,8 @@ body {
   background-image: url("../public/mouse.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  @media (max-width: 992px) {
-    display: none;
+  @media (max-width: 600px) {
+    right: 75px;
   }
 }
 
@@ -171,6 +171,8 @@ body {
 }
 
 .Title__box__subtitle span {
+  font-size: 22px;
+  line-height: 26px;
   display: block;
   color: #94DBA0;
 }
@@ -184,53 +186,67 @@ body {
 
 .container__item {
   padding-top: 3vh;
+  max-width: 330px;
 
+  @media screen and (min-width: 1141px) {
+    padding-top: 20vh;
+    padding-left: 10vw;
+  }
+
+  @media screen and (min-width: 993px) and (max-width: 1140px) {
+    padding-top: 100px;
+    padding-left: 90px;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 992px) {
+    padding-top: 100px;
+    padding-left: 90px;
+  }
+    
+  @media screen and (max-width: 768px) {
+    padding-top: 70px;
+    padding-left: 20px;
+  }
+    
   @media screen and (max-width: 600px) {
+    padding-top: 30px;
     text-align: center;
   }
 }
 
-@media (max-width: 1280px) {
+// @media (max-width: 1280px) {
+//   .Title__box {
+//     margin-bottom: 15px;
+//   }
 
-  .Title__box {
-    margin-bottom: 15px;
-  }
 
-  .Title__box::after {
-    right: 92px;
-  }
+//   .Title__box__title {
+//     font-size: 25px;
+//     line-height: 30px;
+//   }
 
-  .Title__box__title {
-    font-size: 25px;
-    line-height: 30px;
-  }
+//   .Title__box__subtitle {
+//     font-size: 22px;
+//     line-height: 26px;
+//   }
+// }
 
-  .Title__box__subtitle {
-    font-size: 22px;
-    line-height: 26px;
-  }
-}
+// @media (max-width: 920px) {
 
-@media (max-width: 920px) {
+//   .Title__box {
+//     margin-bottom: 15px;
+//   }
 
-  .Title__box {
-    margin-bottom: 15px;
-  }
+//   .Title__box__title {
+//     font-size: 25px;
+//     line-height: 30px;
+//   }
 
-  .Title__box::after {
-    right: 92px;
-  }
-
-  .Title__box__title {
-    font-size: 25px;
-    line-height: 30px;
-  }
-
-  .Title__box__subtitle {
-    font-size: 22px;
-    line-height: 26px;
-  }
-}
+//   .Title__box__subtitle {
+//     font-size: 22px;
+//     line-height: 26px;
+//   }
+// }
 
 
 .wrapper__testimonials {
@@ -306,7 +322,7 @@ body {
   padding: 0 33.5px;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1280px) {
   .footer__top__items {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -317,6 +333,7 @@ body {
 
 .footer__top__item {
   max-width: 266px;
+  margin: 10px;
 }
 
 .footer__top__item__title {
@@ -328,13 +345,9 @@ body {
   border-bottom: 2px solid #8aa6b5;
 }
 
-ul {
-  list-style: none;
-}
-
 .footer__top__item ul {
   display: block;
-  list-style-type: disc;
+  list-style-type: none;
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
@@ -390,6 +403,19 @@ ul {
   align-items: center;
 }
 
+.footer__bottom__item>ul {
+  display: block;
+  list-style-type: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+
+  padding: 0;
+  margin: 0;
+}
+
 @media (max-width: 1140px) {
   .footer__bottom__item:first-child {
     margin-bottom: 20px;
@@ -442,12 +468,6 @@ ul {
   font-weight: 300;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
 .Map {
   max-height: 800px;
   height: 80vh;
@@ -494,6 +514,28 @@ ul {
   justify-content: center;
 }
 
+.btn-primary {
+  background-color: #0693cd;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size:16px;
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 10px;
+  width: 180px;
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-primary+.btn-primary {
+  margin-left: 10px;
+}
+
 .MenuLabel {
   display: flex;
   flex-direction: column;
@@ -513,4 +555,28 @@ ul {
     font-size: 1.2rem;
     line-height: 1.2rem;
   }
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.Control {
+  width: 100%;
+}
+
+.form__input {
+  width: 100%;
+  padding: 1rem;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
