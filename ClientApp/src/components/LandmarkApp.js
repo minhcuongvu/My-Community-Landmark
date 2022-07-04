@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   MapContainer,
   TileLayer,
@@ -10,6 +10,7 @@ import {
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
 import 'leaflet-defaulticon-compatibility';
+import FetchData from './FetchData';
 
 function CenterView({ center }) {
   const map = useMap();
@@ -37,12 +38,13 @@ export default function LandmarkApp() {
     console.log(note);
   };
 
+  const childRef = useRef(null);
+
   const Refresh = () => {
     setUsername('');
     setNote('');
+    childRef.current.populateWeatherData();
   };
-
-  useEffect(() => {}, []);
 
   return (
     <section className="py-4 bg__color">
@@ -61,6 +63,16 @@ export default function LandmarkApp() {
             />
             <Marker position={initialPosition}>
               <Popup closeButton={false}>You are here!</Popup>
+            </Marker>
+
+            <Marker
+              position={[initialPosition[0] + 0.5, initialPosition[1] + 0.5]}
+            >
+              <Popup closeButton={false}>
+                <span>Bob O&#39;Brian</span>
+                <br />
+                <span>Hello!</span>
+              </Popup>
             </Marker>
             <CenterView center={initialPosition} />
           </MapContainer>
@@ -113,42 +125,7 @@ export default function LandmarkApp() {
               </label>
             </form>
             <div className="NoteList__wrapper">
-              <p className="lorum">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque euismod, nisi vel consectetur consectetur, nisi
-                velit euismod nisi, vel consectetur nisi nisi velit euismod
-                nisi.
-              </p>
-              <p className="lorum">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque euismod, nisi vel consectetur consectetur, nisi
-                velit euismod nisi, vel consectetur nisi nisi velit euismod
-                nisi.
-              </p>
-              <p className="lorum">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque euismod, nisi vel consectetur consectetur, nisi
-                velit euismod nisi, vel consectetur nisi nisi velit euismod
-                nisi.
-              </p>
-              <p className="lorum">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque euismod, nisi vel consectetur consectetur, nisi
-                velit euismod nisi, vel consectetur nisi nisi velit euismod
-                nisi.
-              </p>
-              <p className="lorum">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque euismod, nisi vel consectetur consectetur, nisi
-                velit euismod nisi, vel consectetur nisi nisi velit euismod
-                nisi.
-              </p>
-              <p className="lorum">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque euismod, nisi vel consectetur consectetur, nisi
-                velit euismod nisi, vel consectetur nisi nisi velit euismod
-                nisi.
-              </p>
+              <FetchData ref={childRef} />
             </div>
           </div>
         </div>
