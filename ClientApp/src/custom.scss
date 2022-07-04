@@ -502,7 +502,7 @@ body {
 }
 
 .Map {
-  max-height: 800px;
+  max-height: 1000px;
   height: 80vh;
   width: 65%;
   
@@ -614,7 +614,7 @@ input[type=text], select {
 
 .Control {
   width: 100%;
-  height: 600px;
+  height: 900px;
   padding: 1rem;
   margin: 8px 0;
   display: flex;
@@ -624,7 +624,7 @@ input[type=text], select {
   box-sizing: border-box;
   
   @media screen and (max-width: 933px) {
-    height: 500px;
+    height: 800px;
   }
 }
 
@@ -640,7 +640,7 @@ input[type=text], select {
 
 .NoteList__wrapper {
   overflow-y: scroll;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 .popup {

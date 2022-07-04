@@ -10,7 +10,7 @@ import {
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
 import 'leaflet-defaulticon-compatibility';
-import FetchData from './FetchData';
+import uuid from 'react-uuid';
 
 function CenterView({ center }) {
   const map = useMap();
@@ -18,10 +18,90 @@ function CenterView({ center }) {
   return null;
 }
 
+// Utils
+function Round(number) {
+  return Math.round(number * 100) / 100;
+}
+
+function AppMarker({ position, title }) {
+  return (
+    <Marker
+      position={position}
+      eventHandlers={{
+        click: (e) => {
+          console.log(`@${Round(position[0])} @${Round(position[1])}`);
+        },
+      }}
+    >
+      <Popup>
+        {title ? (
+          <>
+            <span className="marker__title">{title}</span>
+            <br />
+          </>
+        ) : null}
+        <button className="marker__btn">See notes here!</button>
+      </Popup>
+    </Marker>
+  );
+}
+
+function ForecastsTable({ data }) {
+  return (
+    <table className="table table-striped" aria-labelledby="tabelLabel">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((key) => (
+          <tr key={`${uuid()}}`}>
+            <td>{key.username}</td>
+            <td>
+              {key.location[0]}/{key.location[1]}
+            </td>
+            <td>{key.note}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+function NoteList({ data, loading }) {
+  return (
+    <div>
+      <h1 id="tabelLabel">Community Notes</h1>
+      <p>People are writing notes about their location.</p>
+      {loading ? (
+        <p>
+          <em>Loading...</em>
+        </p>
+      ) : (
+        <ForecastsTable data={data} />
+      )}
+    </div>
+  );
+}
+
 export default function LandmarkApp() {
   const [username, setUsername] = useState('');
+  const [search, setSearch] = useState('');
+  const [data, setData] = useState([]);
   const [note, setNote] = useState('');
-  const [initialPosition, setInitialPosition] = useState([51.505, -0.09]);
+  const [initialPosition, setInitialPosition] = useState([51.5, -0.09]);
+
+  const [loading, setLoading] = useState(true);
+
+  const populateWeatherData = async () => {
+    const response = await fetch('https://mapnoteapp.azurewebsites.net/data');
+    setData(await response.json());
+    setLoading(false);
+  };
+
   const GetCurrentPosition = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
@@ -29,22 +109,47 @@ export default function LandmarkApp() {
     });
   };
 
-  const SubmitNote = () => {
+  const SubmitNote = async (e) => {
+    e.preventDefault();
     if (!username || !note) {
       alert('Please enter a username and note');
       return;
     }
-    console.log(username);
-    console.log(note);
-  };
+    const noteData = JSON.stringify({
+      username,
+      location: initialPosition,
+      note,
+    });
 
-  const childRef = useRef(null);
+    const options = {
+      method: 'post',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: noteData,
+    };
+    fetch('https://mapnoteapp.azurewebsites.net/data', options)
+      .then((res) => {
+        if (res.status === 200) {
+          alert('successful');
+        } else {
+          alert('Some error occured');
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   const Refresh = () => {
     setUsername('');
     setNote('');
-    childRef.current.populateWeatherData();
+    populateWeatherData();
+    setData(data.map((x) => x).filter((key) => Round(key.location[0]) === Round(initialPosition[0]) && Round(key.location[1]) === Round(initialPosition[1])));
   };
+
+  useEffect(() => {
+    populateWeatherData();
+  }, []);
 
   return (
     <section className="py-4 bg__color">
@@ -61,19 +166,12 @@ export default function LandmarkApp() {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={initialPosition}>
-              <Popup closeButton={false}>You are here!</Popup>
-            </Marker>
+            <AppMarker position={initialPosition} title={'You are here!'} />
 
-            <Marker
+            <AppMarker
               position={[initialPosition[0] + 0.5, initialPosition[1] + 0.5]}
-            >
-              <Popup closeButton={false}>
-                <span>Bob O&#39;Brian</span>
-                <br />
-                <span>Hello!</span>
-              </Popup>
-            </Marker>
+              title={"Bob O'Brian"}
+            />
             <CenterView center={initialPosition} />
           </MapContainer>
         </div>
@@ -87,9 +185,6 @@ export default function LandmarkApp() {
           <div className="Panel">
             <button className="btn btn-primary" onClick={GetCurrentPosition}>
               Your location
-            </button>
-            <button className="btn btn-primary" onClick={SubmitNote}>
-              Submit a note
             </button>
             <button className="btn btn-primary" onClick={Refresh}>
               Refresh map
@@ -122,10 +217,35 @@ export default function LandmarkApp() {
                   onChange={(e) => setNote(e.target.value)}
                   value={note}
                 />
+                <button className="btn btn-primary" onClick={SubmitNote}>
+                  Submit a note
+                </button>
+              </label>
+            </form>
+            <form className="form" action="/">
+              <label className="form__input" htmlFor="fname">
+                <span
+                  className="text__desc"
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  Search for something?
+                </span>
+                <input
+                  type="text"
+                  id="search"
+                  name="searchBox"
+                  placeholder="Enter here.."
+                  style={{ width: '100%' }}
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={search}
+                />
+                <button className="btn btn-primary" onClick={SubmitNote}>
+                  Search
+                </button>
               </label>
             </form>
             <div className="NoteList__wrapper">
-              <FetchData ref={childRef} />
+              <NoteList data={data} loading={loading} />
             </div>
           </div>
         </div>

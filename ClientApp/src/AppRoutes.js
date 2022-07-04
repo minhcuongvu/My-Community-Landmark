@@ -1,5 +1,4 @@
 import LandmarkApp from './components/LandmarkApp';
-import FetchData from './components/FetchData';
 import Home from './components/Home';
 
 const AppRoutes = [
@@ -10,10 +9,6 @@ const AppRoutes = [
   {
     path: '/LandmarkApp',
     element: <LandmarkApp />,
-  },
-  {
-    path: '/fetch-data',
-    element: <FetchData />,
   },
 ];
 
