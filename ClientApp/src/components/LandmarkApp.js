@@ -32,11 +32,6 @@ function AppMarker({
   return (
     <Marker
       position={position}
-      // eventHandlers={{
-      //   click: (e) => {
-      //     clickEvent(e);
-      //   },
-      // }}
     >
       <Popup>
         {title ? (
@@ -45,9 +40,7 @@ function AppMarker({
             <br />
           </>
         ) : null}
-        {showBtn ? (
-          <button className="marker__btn" onClick={clickEvent}>See notes here!</button>
-        ) : null}
+        <button className="marker__btn" onClick={clickEvent}>See notes here!</button>
       </Popup>
     </Marker>
   );
@@ -101,6 +94,7 @@ export default function LandmarkApp() {
   const [display, setDisplay] = useState([]);
   const [note, setNote] = useState('');
   const [initialPosition, setInitialPosition] = useState([51.5, -0.09]);
+  const [currentSelectedPos, setCurrentSelectedPos] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
@@ -140,7 +134,7 @@ export default function LandmarkApp() {
     fetch('https://mapnoteapp.azurewebsites.net/data', options)
       .then((res) => {
         if (res.status === 200) {
-          alert('Your note is submitted! CLick the Refresh button to see it.');
+          alert('Your note is submitted! Click the Refresh button to see it.');
         } else {
           alert('Some error occured');
         }
@@ -151,12 +145,19 @@ export default function LandmarkApp() {
   const Refresh = () => {
     setUsername('');
     setNote('');
-    setDisplay(data.filter((key) => Round(key.location[0]) === Round(initialPosition[0]) && Round(key.location[1]) === Round(initialPosition[1])));
+    setDisplay(data);
   };
 
-  const clickEvent = (lat, long) => {
-    setDisplay(data.filter((key) => Round(key.location[0]) === Round(lat) && Round(key.location[1]) === Round(long)));
-    console.log(`@${lat} @${Round(long)}`);
+  const clickEvent = (e, location) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (location !== null) {
+      setDisplay(data.filter((key) => Round(key.location[0]) === Round(location[0]) && Round(key.location[1]) === Round(location[1])));
+      console.log(`@${location[0]} @${Round(location[1])}`);
+      setCurrentSelectedPos(location);
+    } else {
+      alert('No data found');
+    }
   };
 
   useEffect(() => {
@@ -179,19 +180,18 @@ export default function LandmarkApp() {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <AppMarker position={initialPosition} title={'You are here!'} showBtn={false} />
+            <AppMarker position={initialPosition} title={'You are here!'} showBtn={1} clickEvent={(e) => clickEvent(e, initialPosition)} />
             {
               data.filter((key) => key.location[0] !== initialPosition[0] && key.location[1] !== initialPosition[1]).map((key) => (
                 <AppMarker
                   key={`${uuid()}}`}
                   position={key.location}
-                  title={key.username}
                   showBtn={1}
-                  clickEvent={clickEvent}
+                  clickEvent={(e) => clickEvent(e, [key.location[0], key.location[1]])}
                 />
               ))
             }
-            <CenterView center={initialPosition} />
+            <CenterView center={currentSelectedPos || initialPosition} />
           </MapContainer>
         </div>
         <div className="Menu">
@@ -206,7 +206,7 @@ export default function LandmarkApp() {
               Your location
             </button>
             <button className="btn btn-primary" onClick={Refresh}>
-              Refresh map
+              Refresh
             </button>
           </div>
           <div className="Control">
