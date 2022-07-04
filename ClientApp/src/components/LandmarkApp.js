@@ -20,7 +20,7 @@ function CenterView({ center }) {
 
 // Utils
 function Round(number) {
-  return Math.round(number * 100) / 100;
+  return Math.round(number * 1000) / 1000;
 }
 
 function AppMarker({
@@ -119,7 +119,7 @@ export default function LandmarkApp() {
     }
     const noteData = JSON.stringify({
       username,
-      location: initialPosition,
+      location: [Round(initialPosition[0]), Round(initialPosition[1])],
       note,
     });
 
@@ -134,7 +134,7 @@ export default function LandmarkApp() {
     fetch('https://mapnoteapp.azurewebsites.net/data', options)
       .then((res) => {
         if (res.status === 200) {
-          alert('Your note is submitted! Click the Refresh button to see it.');
+          alert('Your note is submitted! Refresh the page later to see it.');
         } else {
           alert('Some error occured');
         }
@@ -142,10 +142,17 @@ export default function LandmarkApp() {
       .catch((err) => console.log(err));
   };
 
+  const Search = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDisplay(data.filter((key) => key.username.includes(search) || key.note.includes(search)));
+  };
+
   const Refresh = () => {
     setUsername('');
     setNote('');
     setDisplay(data);
+    populateWeatherData();
   };
 
   const clickEvent = (e, location) => {
@@ -153,7 +160,6 @@ export default function LandmarkApp() {
     e.stopPropagation();
     if (location !== null) {
       setDisplay(data.filter((key) => Round(key.location[0]) === Round(location[0]) && Round(key.location[1]) === Round(location[1])));
-      console.log(`@${location[0]} @${Round(location[1])}`);
       setCurrentSelectedPos(location);
     } else {
       alert('No data found');
@@ -253,12 +259,12 @@ export default function LandmarkApp() {
                   type="text"
                   id="search"
                   name="searchBox"
-                  placeholder="Enter here.."
+                  placeholder="Enter here.. (case sensitive)"
                   style={{ width: '100%' }}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setSearch(e.target.value)}
                   value={search}
                 />
-                <button className="btn btn-primary" onClick={SubmitNote}>
+                <button className="btn btn-primary" onClick={(e) => Search(e)}>
                   Search
                 </button>
               </label>

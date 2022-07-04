@@ -8,7 +8,7 @@ export default function Banner() {
           <div className="container__items">
             <img className="banner__img" src="/hero24.webp" alt="banner-img" />
             <div className="container__item">
-              <div className="Title__box Title__box__cursor">
+              <div className="Title__box Title__box__cursor no-select">
                 <h4 className="Title__box__title text__title text__title__color">
                   Everything you need
                   <br />
@@ -16,7 +16,7 @@ export default function Banner() {
                   <span>a click away</span>
                 </h4>
               </div>
-              <div className="Title__box__subtitle text__title__color">
+              <div className="Title__box__subtitle text__title__color no-select">
                 <h4 className="Title__box__title text__title text__title__color">
                   Discover your local
                 </h4>

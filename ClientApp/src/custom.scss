@@ -395,6 +395,13 @@ body {
   font-size: 14px;
   line-height: 17px;
   color: #577582;
+  font-family: "Lato-Light", sans-serif;
+  font-weight: 300;
+}
+
+.no-select {
+  cursor: pointer;
+  user-select:none;
 }
 
 .footer__top__list__item {

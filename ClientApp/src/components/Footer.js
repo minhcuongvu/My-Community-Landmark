@@ -8,10 +8,53 @@ export default function Footer() {
       <div className="container">
         <div className="footer__top">
           <div className="footer__top__items">
-            <FooterItem />
-            <FooterItem />
-            <FooterItem />
-            <FooterItem />
+            <FooterItem
+              title={'Membership'}
+              labels={[
+                'Community Organisation Membership',
+                'Council Membership',
+                'Government Membership',
+                'Elected Representative Membership',
+                'Schools Membership',
+                'Membership Features',
+                'Our Members',
+              ]}
+            />
+            <FooterItem
+              title={'Resouces'}
+              labels={[
+                'Join for Free',
+                'Member Login',
+                'Connect Now',
+                'Approve Your Listing',
+                'Support',
+                'Explore My Community',
+                'Resource List',
+                'Suggest A Listing',
+              ]}
+            />
+            <FooterItem
+              title={'Associates'}
+              labels={[
+                'Community Central',
+                'My Community Directory',
+                'Community Information Support Services',
+                'Community Information Exchange',
+                'Service Linker',
+                'Vans And Kitchens (VAKS)',
+              ]}
+            />
+            <FooterItem
+              title={'Further Information'}
+              labels={[
+                'About Us',
+                'Contact',
+                'Terms & Conditions',
+                'Privacy Policy',
+                'Sitemap',
+                'Make My Community Landmark my homepage',
+              ]}
+            />
           </div>
         </div>
         <div className="footer__bot">
