@@ -1,19 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+
+// !!!!!!!!This file is currently unused
+// !!!!!!!!This file is currently unused
+// !!!!!!!!This file is currently unused
+// !!!!!!!!This file is currently unused
 namespace MyCommunityLandMark.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController:ControllerBase
+    public class SiteController:ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
         "Bingo", "Bengo", "Bango", "Bongo", "Dog", "Cat", "Fish", "Birb", "Duck", "Chicken"
     };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<SiteController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public SiteController(ILogger<SiteController> logger)
         {
             _logger = logger;
         }

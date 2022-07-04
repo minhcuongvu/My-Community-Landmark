@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
         <div className="footer__bot">
           <div className="footer__bottom__items">
-            <div className="footer__bottom__item">
+            <div className="footer__bottom__item no-select">
               <a href="/">
                 <img
                   alt="logo"
@@ -79,7 +79,7 @@ export default function Footer() {
             </div>
             <div className="footer__bottom__item">
               <div className="footer__bottom__item-a footer__text">
-                © Copyright 2022 My Community Diary
+                © Copyright 2022 My Community Directory
               </div>
               <div className="footer__bottom__item-a footer__text">
                 Text App - 0488 884 151

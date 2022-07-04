@@ -33,7 +33,7 @@ export default class NavMenu extends Component {
       <header className="header">
         <div className="header__container">
           <div className="header__container__inner" tag={Link} to="/">
-            <a className="logo" href="/#">
+            <a className="logo" href="/">
               <img
                 src="/directory-logo.svg"
                 alt="logo"

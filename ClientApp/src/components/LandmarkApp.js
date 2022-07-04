@@ -33,7 +33,7 @@ function AppMarker({
     <Marker
       position={position}
     >
-      <Popup>
+      <Popup closeButton={false}>
         {title ? (
           <>
             <span className="marker__title">{title}</span>
@@ -152,6 +152,8 @@ export default function LandmarkApp() {
     setUsername('');
     setNote('');
     setDisplay(data);
+    setInitialPosition([51.5, -0.09]);
+    setCurrentSelectedPos(null);
     populateWeatherData();
   };
 
