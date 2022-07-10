@@ -1,9 +1,10 @@
-# [My Community Landmark]()
+# My Community Landmark
+[View](https://my-community-landmark.azurewebsites.net/)
 adapted from [My Community Directory](https://www.mycommunitydirectory.com.au/) and [My Community Diary](https://www.mycommunitydiary.com.au/)
 
 ### Overview
 
-#### This project is for training and educational purposes only
+#### This project is for training and educational purposes only!
 
 This is a Single Page Web App utilising modern and popular/up-to-date technologies.
 As part of my application to My Community Directory
