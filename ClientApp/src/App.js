@@ -7,7 +7,7 @@ import './custom.scss';
 
 export default function App() {
   return (
-    <>
+    <Layout>
       <Helmet>
         <meta charset="utf-8" />
         <meta name="author" content="Cuong Minh Vu" />
@@ -21,14 +21,12 @@ export default function App() {
           own!
         </title>
       </Helmet>
-      <Layout>
-        <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={route} {...rest} element={element} />;
-          })}
-        </Routes>
-      </Layout>
-    </>
+      <Routes>
+        {AppRoutes.map((route, index) => {
+          const { element, ...rest } = route;
+          return <Route key={route} {...rest} element={element} />;
+        })}
+      </Routes>
+    </Layout>
   );
 }
