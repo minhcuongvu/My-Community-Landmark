@@ -2,6 +2,8 @@
 [View](https://my-community-landmark.azurewebsites.net/)
 adapted from [My Community Directory](https://www.mycommunitydirectory.com.au/) and [My Community Diary](https://www.mycommunitydiary.com.au/)
 
+<img align="right" width="50%" src="refs/landmark.PNG" />
+
 ### Overview
 
 #### This project is for training and educational purposes only!
@@ -14,5 +16,10 @@ As part of my application to My Community Directory
 - Frontend using ReactJS framework & libraries
 - Styling with CSS/SASS
 - Leaflet as a Javascript Library for the interactive map
+
+### Setup
+
+`npm i`
+`npm start`
  
- #### See its [Backend](https://github.com/noedigsti/My-Community-Landmark-BE)
+#### See its [Backend](https://github.com/noedigsti/My-Community-Landmark-BE)
